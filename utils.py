@@ -157,7 +157,7 @@ class ModelSelection:
         
     def on_button_clicked(self, b):
         print("You select: ", b.description)
-        self.value = int(b.description)
+        self.value = b.description
 
 class PairingComparison:
     def __init__(self):
@@ -177,4 +177,4 @@ class PairingComparison:
         
     def on_button_clicked(self, b):
         print("You select: ", b.description)
-        self.value = int(b.description)
+        self.value = b.description
