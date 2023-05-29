@@ -85,10 +85,6 @@ def multi_plot_with_zoom(t, signals):
     show(layout(rows), notebook_handle=True)
 
 
-from bokeh.plotting import figure, show
-from bokeh.io import output_notebook
-from bokeh.models import ColumnDataSource, FreehandDrawTool
-from bokeh.layouts import gridplot
 
 class InteractiveDrawing:
     def __init__(self, num_plots):
@@ -141,4 +137,44 @@ class PatternSelector:
         
     def on_button_clicked(self, b):
         print("Number of patterns, selected by you is: ", b.description)
+        self.value = int(b.description)
+
+class ModelSelection:
+        def __init__(self):
+        print('Considering the summaries provided by the two methods, please rate your preference for each method on a scale of 1 to 5, where 1 indicates (Strongly Prefer A), 3 indicates (No Preference), and 5 indicates (Strongly Prefer B).')
+        self.value = None
+        self.button1 = widgets.Button(description = '1 - Strongly Prefer A')
+        self.button2 = widgets.Button(description = '2 - Prefer A')
+        self.button3 = widgets.Button(description = '3 - No Preference')
+        self.button4 = widgets.Button(description = '4 - Prefer B')
+        self.button5 = widgets.Button(description = '5 - Strongly Prefer B')
+        self.button1.on_click(self.on_button_clicked)
+        self.button2.on_click(self.on_button_clicked)
+        self.button3.on_click(self.on_button_clicked)
+        self.button4.on_click(self.on_button_clicked)
+        self.button5.on_click(self.on_button_clicked)
+        display(self.button1, self.button2, self.button3, self.button4, self.button5)
+        
+    def on_button_clicked(self, b):
+        print("You select: ", b.description)
+        self.value = int(b.description)
+
+class PairingComparison:
+        def __init__(self):
+        print('Considering how each method pairs the discovered patterns with the ones you identified, please rate your preference for each method on a scale of 1 to 5. A score of 1 indicates (Strongly Prefer A), 3 indicates (No Preference), and 5 indicates (Strongly Prefer B).')
+        self.value = None
+        self.button1 = widgets.Button(description = '1 - Strongly Prefer A')
+        self.button2 = widgets.Button(description = '2 - Prefer A')
+        self.button3 = widgets.Button(description = '3 - No Preference')
+        self.button4 = widgets.Button(description = '4 - Prefer B')
+        self.button5 = widgets.Button(description = '5 - Strongly Prefer B')
+        self.button1.on_click(self.on_button_clicked)
+        self.button2.on_click(self.on_button_clicked)
+        self.button3.on_click(self.on_button_clicked)
+        self.button4.on_click(self.on_button_clicked)
+        self.button5.on_click(self.on_button_clicked)
+        display(self.button1, self.button2, self.button3, self.button4, self.button5)
+        
+    def on_button_clicked(self, b):
+        print("You select: ", b.description)
         self.value = int(b.description)
