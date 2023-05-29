@@ -140,7 +140,7 @@ class PatternSelector:
         self.value = int(b.description)
 
 class ModelSelection:
-        def __init__(self):
+    def __init__(self):
         print('Considering the summaries provided by the two methods, please rate your preference for each method on a scale of 1 to 5, where 1 indicates (Strongly Prefer A), 3 indicates (No Preference), and 5 indicates (Strongly Prefer B).')
         self.value = None
         self.button1 = widgets.Button(description = '1 - Strongly Prefer A')
@@ -160,7 +160,7 @@ class ModelSelection:
         self.value = int(b.description)
 
 class PairingComparison:
-        def __init__(self):
+    def __init__(self):
         print('Considering how each method pairs the discovered patterns with the ones you identified, please rate your preference for each method on a scale of 1 to 5. A score of 1 indicates (Strongly Prefer A), 3 indicates (No Preference), and 5 indicates (Strongly Prefer B).')
         self.value = None
         self.button1 = widgets.Button(description = '1 - Strongly Prefer A')
