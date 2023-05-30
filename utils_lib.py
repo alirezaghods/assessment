@@ -73,6 +73,9 @@ class InteractivePlot:
         select.add_tools(range_tool)
         select.toolbar.active_multi = range_tool
 
+        # add this line to adjust y_range
+        self.p.y_range = DataRange1d(range_padding=0.1)
+
         return column(self.p, select)
 
 
