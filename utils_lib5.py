@@ -172,15 +172,15 @@ class InteractiveDrawing:
             self.plots.append(p)
 
             # Add a Button and TextAreaInput for each plot
-            button = Button(label='Save', width=100)
-            text_area = TextAreaInput(value='', rows=6, title='source data:')
+            # button = Button(label='Save', width=100)
+            # text_area = TextAreaInput(value='', rows=6, title='source data:')
             
-            callback_code = """
-            text_area.value = JSON.stringify(source.data);
-            """
-            button.js_on_click(CustomJS(args=dict(source=source, text_area=text_area), code=callback_code))
+            # callback_code = """
+            # text_area.value = JSON.stringify(source.data);
+            # """
+            # button.js_on_click(CustomJS(args=dict(source=source, text_area=text_area), code=callback_code))
 
-            self.plots.append(column(p, button, text_area))
+            # self.plots.append(column(p, button, text_area))
         
         self.grid = gridplot(self.plots, ncols=2)
         
