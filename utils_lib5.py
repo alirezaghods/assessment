@@ -118,41 +118,41 @@ class InteractivePlot:
     #     select.toolbar.active_multi = range_tool
 
     #     return column(self.p, select)
-def plot_with_fixed_window(window_start, window_end):
-    # create the range tool (smaller plot)
-    select = figure(height=100, width=600, y_range=p.y_range,
-                    x_axis_type=None, y_axis_type=None,
-                    tools="", toolbar_location=None, background_fill_color="#efefef")
+    def plot_with_fixed_window(window_start, window_end):
+        # create the range tool (smaller plot)
+        select = figure(height=100, width=600, y_range=p.y_range,
+                        x_axis_type=None, y_axis_type=None,
+                        tools="", toolbar_location=None, background_fill_color="#efefef")
+    
+        # set the fixed window size to the main plot's x_range
+        p.x_range.start = window_start
+        p.x_range.end = window_end
+    
+        range_tool = RangeTool(x_range=p.x_range)
+        range_tool.overlay.fill_color = "navy"
+        range_tool.overlay.fill_alpha = 0.2
+    
+        select.line('x', 'y', source=source)
+        select.ygrid.grid_line_color = None
+        select.add_tools(range_tool)
+        select.toolbar.active_multi = range_tool
+        for tool in range_tool.tools:
+            if isinstance(tool, PanTool) or isinstance(tool, WheelZoomTool):
+                tool.disabled = True
+    
+        return column(p, select)
 
-    # set the fixed window size to the main plot's x_range
-    p.x_range.start = window_start
-    p.x_range.end = window_end
+# def multi_plot_with_zoom(self, signals, window):
+#         plots = []
+#         for signal in signals:
+#             plot = self.plot_with_fixed_window(0, window)
+#             p = plot.children[0]
+#             source = plot.children[1].renderers[0].data_source
+#             p.line('x', 'y', source=source)
+#             plots.append(plot)
 
-    range_tool = RangeTool(x_range=p.x_range)
-    range_tool.overlay.fill_color = "navy"
-    range_tool.overlay.fill_alpha = 0.2
-
-    select.line('x', 'y', source=source)
-    select.ygrid.grid_line_color = None
-    select.add_tools(range_tool)
-    select.toolbar.active_multi = range_tool
-    for tool in range_tool.tools:
-        if isinstance(tool, PanTool) or isinstance(tool, WheelZoomTool):
-            tool.disabled = True
-
-    return column(p, select)
-
-def multi_plot_with_zoom(self, signals, window):
-        plots = []
-        for signal in signals:
-            plot = self.plot_with_fixed_window(0, window)
-            p = plot.children[0]
-            source = plot.children[1].renderers[0].data_source
-            p.line('x', 'y', source=source)
-            plots.append(plot)
-
-        rows = [plots[i:i+2] for i in range(0, len(plots), 2)]
-        show(layout(rows), notebook_handle=True)
+#         rows = [plots[i:i+2] for i in range(0, len(plots), 2)]
+#         show(layout(rows), notebook_handle=True)
 
 
 
