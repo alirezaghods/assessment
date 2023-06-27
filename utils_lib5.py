@@ -142,6 +142,19 @@ def plot_with_fixed_window(window_start, window_end):
 
     return column(p, select)
 
+def multi_plot_with_zoom(self, signals, window):
+        plots = []
+        for signal in signals:
+            plot = self.plot_with_fixed_window(0, window)
+            p = plot.children[0]
+            source = plot.children[1].renderers[0].data_source
+            p.line('x', 'y', source=source)
+            plots.append(plot)
+
+        rows = [plots[i:i+2] for i in range(0, len(plots), 2)]
+        show(layout(rows), notebook_handle=True)
+
+
 
 
 
