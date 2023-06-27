@@ -142,13 +142,23 @@ def plot_with_fixed_window(window_start, window_end):
 
 
 
+def multi_plot_with_zoom(t, signals, window):
+    plots = []
+    for signal in signals:
+        p = InteractivePlot(t, signal).p
+        source = InteractivePlot(t, signal).source
+        plot = plot_with_fixed_window(p, source, 0, window)
+        plots.append(plot)
 
-def multi_plot_with_zoom(t, signals,window):
-    # plots = [InteractivePlot(t, signal).plot_with_zoom() for signal in signals]
-    plots = [InteractivePlot(t, signal).plot_with_fixed_window(0,window) for signal in signals]
     rows = [plots[i:i+2] for i in range(0, len(plots), 2)]
-    
     show(layout(rows), notebook_handle=True)
+
+# def multi_plot_with_zoom(t, signals,window):
+#     # plots = [InteractivePlot(t, signal).plot_with_zoom() for signal in signals]
+#     plots = [InteractivePlot(t, signal).plot_with_fixed_window(0,window) for signal in signals]
+#     rows = [plots[i:i+2] for i in range(0, len(plots), 2)]
+    
+#     show(layout(rows), notebook_handle=True)
 
 
 
