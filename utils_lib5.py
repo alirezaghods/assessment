@@ -136,7 +136,9 @@ def plot_with_fixed_window(window_start, window_end):
     select.ygrid.grid_line_color = None
     select.add_tools(range_tool)
     select.toolbar.active_multi = range_tool
-    range_tool.overlay.js_on_event('tap', CustomJS(code="event.stopPropagation();"))
+    for tool in range_tool.tools:
+        if isinstance(tool, PanTool) or isinstance(tool, WheelZoomTool):
+            tool.disabled = True
 
     return column(p, select)
 
