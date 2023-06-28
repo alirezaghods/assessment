@@ -1,5 +1,5 @@
 from bokeh.io import output_notebook, push_notebook, show
-from bokeh.models import ColumnDataSource, BoxAnnotation, Slider, CustomJS, Range1d, Span, Div
+from bokeh.models import ColumnDataSource, BoxAnnotation, Slider, CustomJS, Range1d, Span, Div, FreehandDrawTool
 from bokeh.plotting import figure
 from bokeh.layouts import column, gridplot, layout
 import numpy as np
